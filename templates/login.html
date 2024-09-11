@@ -1,0 +1,26 @@
+
+<meta charset="UTF-8">
+<title>Agenda</title>
+
+<body>    
+    
+    <div style="text-align: right; margin-right: 50px;" >
+        <a href="/register">register</a>
+    </div>
+    <h1  style="text-align: center;">Agenda</h1>
+
+    <h1>login</h1>
+    <form action="submit" method="POST"> 
+        {% csrf_token %}
+        <label>Usuario:</label>
+            <input type="text" name="username">
+        <label>Passoword:</label>
+            <input type="password" name="password">
+        <button type="submit">Entrar</button>
+    </form>
+    
+    {% for message in messages %}
+        <strong>Erro</strong>{{ message }}
+    {% endfor %}
+</body>
+</html>
