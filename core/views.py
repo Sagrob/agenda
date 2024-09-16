@@ -6,6 +6,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import ensure_csrf_cookie
 import re
+from datetime import datetime, timedelta
 
 def login_user(request):
     return render(request, 'login.html')
@@ -49,7 +50,7 @@ def home(request):
 #Adiciona um evento
 @login_required(login_url='/login/')
 def submit_evento(request):             #Por algum motivo não está atualizando os dados
-    if request.method == "POST":
+    if request.POST:
         titulo = request.POST.get('titulo')
         data_evento = request.POST.get('data_evento')
         descricao = request.POST.get('descricao')
@@ -83,3 +84,11 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
+
+@login_required(login_url='/login/')
+def lista_eventos(request):
+    usuario = requesr.user
+    data_atual = datetime.now() - timedelta(hours=1)
+    evento = Evento.objects.filter(usuario=usuario, data_evento__gt=data_atual)
+    dados = {'eventos':evento}
+    return render(request, 'home.html', dados)
