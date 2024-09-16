@@ -5,8 +5,8 @@ from .views import login_user, submit_login, logout_user, evento, home, submit_e
 urlpatterns = [
     path('home/', home, name='home'),
     path('', RedirectView.as_view(url='/home/')),
-    path('home/evento', evento),
-    path('home/submit', submit_evento),
+    path('home/evento/', evento, name='evento'),
+    path('home/evento/submit', submit_evento, name='submit_evento'),
     path('login/', login_user, name='login'),
     path('register/', register, name='register'),
     path('login/submit', submit_login, name='submit'),
