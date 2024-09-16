@@ -10,14 +10,14 @@
     
     <div style="display: grid; justify-content: center;">
         <label>Título</label><br>
-        {% if evento.id %}
-        <input type="hidden" name="evento_id" value="{{ evento.id }}">
-        {% endif %}
+
+        <input type="number" name="evento_id" value="{{ evento.id }}" hidden>
+
             <input type="text" name="titulo" value="{{ evento.titulo }}" /><br>
         <br>
 
         <label>Data Evento</label><br>
-            <input type="date" name="data_evento" value="{{ evento.data_evento }}" /><br>
+            <input type="datetime-local" name="data_evento" value="{{ evento.get_data_input_evento }}" /><br>
         <br>
 
         <label>Descrição</label><br>
